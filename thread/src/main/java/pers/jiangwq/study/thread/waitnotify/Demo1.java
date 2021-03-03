@@ -10,6 +10,7 @@ package pers.jiangwq.study.thread.waitnotify;
  */
 public class Demo1 implements Runnable{
 
+  //保证是同一把锁
   private final static Object lock = new Object();
 
   private static int printCount = 1000;
@@ -24,8 +25,10 @@ public class Demo1 implements Runnable{
   public void run() {
     while (printCount > 0) {
       synchronized (lock) {
+        // 这个while可以保证被唤醒的线程
         while (printCount % 4 != no && printCount > 0) {
           try {
+            // wait可以让线程在此等待并释放锁
             lock.wait();
           } catch (InterruptedException e) {
             e.printStackTrace();
@@ -34,6 +37,7 @@ public class Demo1 implements Runnable{
         if (printCount > 0) {
           System.out.println(no + ":" + printCount);
           printCount--;
+          // 处理完成唤醒等待中的线程, 不是百分之百确定请不要用notify方法，只会唤醒一个线程
           lock.notifyAll();
         }
       }
