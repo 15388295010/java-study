@@ -1,4 +1,4 @@
-package pers.jiangwq.study.thread.waitnotify;
+package pers.jiangwq.study.thread.lock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

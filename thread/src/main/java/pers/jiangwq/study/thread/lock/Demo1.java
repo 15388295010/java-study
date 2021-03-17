@@ -1,4 +1,4 @@
-package pers.jiangwq.study.thread.waitnotify;
+package pers.jiangwq.study.thread.lock;
 
 /**
  * <class说明>：实现三个线程依次循环打印1000 - 1
